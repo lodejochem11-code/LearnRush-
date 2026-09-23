@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LearnRush — Leren hoeft niet saai te zijn</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#70798c;--line:#e7eaf1;--p:#6757df;--p2:#8a7cf3;--green:#17a673;--red:#df5260;--yellow:#f2a93b;--shadow:0 12px 35px #25304b0d}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}button{cursor:pointer}
+.app{min-height:100vh;display:flex}.side{position:fixed;left:0;top:0;bottom:0;width:250px;background:#fff;border-right:1px solid var(--line);padding:20px 14px;z-index:10}.brand{display:flex;gap:10px;align-items:center;font-size:22px;font-weight:900;padding:6px 10px 25px}.brandmark{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--p),var(--p2));display:grid;place-items:center;color:#fff}.nav{display:grid;gap:5px}.nav button{border:0;background:transparent;text-align:left;padding:12px;border-radius:12px;color:#747d90;font-weight:700}.nav button:hover,.nav button.active{background:#f0edff;color:var(--p)}.nav span{display:inline-block;width:25px}
+.main{margin-left:250px;width:calc(100% - 250px);padding:25px 38px 60px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.search{background:#fff;border:1px solid var(--line);padding:10px 14px;border-radius:13px;width:390px;display:flex;gap:8px}.search input{border:0;outline:0;width:100%}.avatar{width:40px;height:40px;border-radius:50%;background:#ffb15c;color:#fff;display:grid;place-items:center;font-weight:900}
+.view{display:none}.view.active{display:block}.hero{padding:28px 30px;border-radius:23px;background:linear-gradient(115deg,#5f50d6,#8777ed);color:#fff;box-shadow:0 18px 45px #6757df30}.hero h1{margin:0 0 8px;font-size:31px}.hero p{margin:0;color:#eeeaff}.hero-actions{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}.btn{border:0;border-radius:11px;padding:11px 16px;font-weight:800}.primary{background:#fff;color:#5d4fd2}.purple{background:var(--p);color:#fff}.ghost{background:#ffffff18;color:#fff;border:1px solid #ffffff3a}
+.section{display:flex;justify-content:space-between;align-items:center;margin:28px 0 14px}.section h2{font-size:20px;margin:0}.link{background:transparent;color:var(--p);font-weight:800;border:0}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 4px 14px #23304d05}.subject{transition:.18s}.subject:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.ico{width:48px;height:48px;border-radius:14px;background:#f1efff;display:grid;place-items:center;font-size:24px;margin-bottom:14px}.subject h3{margin:0 0 5px}.subject p{margin:0 0 13px;color:var(--muted);font-size:12px}.bar{height:7px;background:#eceef4;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--p),var(--p2));border-radius:99px}.small{font-size:11px;color:var(--muted);margin-top:7px;display:flex;justify-content:space-between}
+.two{display:grid;grid-template-columns:1.35fr .65fr;gap:18px;margin-top:28px}.item{display:flex;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid #eff1f5}.item:last-child{border:0}.miniico{width:42px;height:42px;border-radius:12px;background:#f2f0ff;display:grid;place-items:center}.item main{flex:1}.item main strong{font-size:14px}.item main small{display:block;color:var(--muted);margin-top:3px}.smallbtn{border:0;background:#f0edff;color:var(--p);padding:8px 11px;border-radius:9px;font-weight:800}
+.title{font-size:30px;margin:0 0 5px}.sub{color:var(--muted);margin:0 0 23px}.subjectgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.big{padding:21px}.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.tag{background:#f3f1ff;color:var(--p);font-size:11px;padding:6px 8px;border-radius:8px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.filter{border:1px solid var(--line);background:#fff;padding:9px 12px;border-radius:10px;font-weight:750;color:#697286}.filter.active{background:#f0edff;border-color:#d8d2ff;color:var(--p)}
+.lesson{max-width:900px}.lessonbox{background:#fff;border:1px solid var(--line);border-radius:21px;padding:28px;margin-bottom:17px}.lessonbox h2{margin-top:0}.lessonbox p,.lessonbox li{line-height:1.7;color:#505a6d}.example{background:#f7f7fc;border-left:4px solid var(--p);padding:15px;border-radius:0 12px 12px 0}.callout{background:#ecfbf5;border:1px solid #c7f1df;border-radius:13px;padding:14px;color:#087850}
+.practice-wrap{max-width:900px}.question{font-size:23px;font-weight:850;margin:18px 0}.choices{display:grid;gap:9px}.choice{border:2px solid var(--line);background:#fff;border-radius:13px;padding:14px;text-align:left;font-weight:700}.choice:hover{border-color:#c9c2ff;background:#fbfaff}.choice.correct{border-color:var(--green);background:#ecfbf5}.choice.wrong{border-color:var(--red);background:#fff1f2}.feedback{margin-top:14px;padding:14px;border-radius:12px;display:none}.feedback.show{display:block}.good{background:#ecfbf5;color:#087850}.bad{background:#fff1f2;color:#b23845}.practicebar{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.next{margin-top:15px}
+.profilecard{max-width:900px}.statrow{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line)}.statrow:last-child{border:0}
+.toast{position:fixed;right:22px;bottom:22px;background:#172033;color:#fff;padding:13px 16px;border-radius:12px;box-shadow:var(--shadow);opacity:0;transform:translateY(15px);transition:.2s;z-index:30}.toast.show{opacity:1;transform:none}
+@media(max-width:1050px){.grid{grid-template-columns:repeat(2,1fr)}.subjectgrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:760px){.side{width:70px;padding:15px 8px}.brand span,.nav button b{display:none}.nav button{text-align:center}.main{margin-left:70px;width:calc(100% - 70px);padding:18px}.search{width:100%}.top .avatar{display:none}.grid,.subjectgrid,.two{grid-template-columns:1fr}}
+
+/* LearnRush redesign */
+:root{--bg:#f6f8fc;--card:#fff;--text:#172033;--muted:#6d778a;--line:#e4e8f0;--blue:#3b82f6;--blue2:#2563eb;--green:#22a06b;--orange:#f59e0b;--red:#ef5b67;--shadow:0 8px 24px rgba(20,35,60,.07)}
+body{background:var(--bg);color:var(--text)}
+.side{background:#fff;border-right:1px solid var(--line);box-shadow:2px 0 12px rgba(20,35,60,.03)}
+.brandmark{background:var(--blue);border-radius:10px}.nav button{border-radius:10px}.nav button:hover,.nav button.active{background:#eaf2ff;color:var(--blue2)}
+.main{padding-top:22px}.search{box-shadow:0 2px 8px rgba(20,35,60,.04)}
+.hero{background:linear-gradient(110deg,#2563eb,#4f8df7);box-shadow:0 12px 30px rgba(37,99,235,.18);border-radius:18px}
+.card,.lessonbox{border:1px solid var(--line);box-shadow:var(--shadow);border-radius:16px}.card:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(20,35,60,.1)}
+.subject{position:relative;overflow:hidden}.subject .ico{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;background:#eef5ff;font-size:25px}.subject:nth-child(4n+2) .ico{background:#eaf8f0}.subject:nth-child(4n+3) .ico{background:#fff4df}.subject:nth-child(4n+4) .ico{background:#fff0f2}
+.bar{height:8px;background:#edf0f5;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:var(--blue);border-radius:99px}.tag{background:#f1f5f9;color:#4b5b70;border-radius:7px}
+.btn{border-radius:10px}.purple{background:var(--blue2)}.smallbtn{background:#eaf2ff;color:var(--blue2);border-radius:8px}.link{color:var(--blue2)}
+.filter.active{background:#eaf2ff;border-color:#cfe0ff;color:var(--blue2)}.choice{border-radius:11px}.choice:hover{border-color:#9cc0ff;background:#f7fbff}.choice.correct{border-color:var(--green);background:#ecfaf3}.choice.wrong{border-color:var(--red);background:#fff0f2}
+.title{font-size:32px}.sub{font-size:15px}.section h2{font-size:21px}
+@media(max-width:760px){.hero{padding:22px}.main{padding:16px}}
+
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side">
+  <div class="brand"><div class="brandmark">L</div><span>LearnRush</span></div>
+  <div class="nav">
+    <button class="active" data-page="home">🏠 <b>Overzicht</b></button>
+    <button data-page="subjects">📚 <b>Vakken</b></button>
+    <button data-page="learn">🧠 <b>Leren</b></button>
+    <button data-page="practice">⚡ <b>Oefenen</b></button>
+    <button data-page="progress">📈 <b>Voortgang</b></button>
+  </div>
+</aside>
+<main class="main">
+<header class="top"><label class="search">🔎 <input id="search" placeholder="Zoek een vak of onderwerp..."></label><div class="avatar">L</div></header>
+
+<section id="home" class="view active">
+  <div class="hero"><h1>Hey Lode 👋</h1><p>Leer in kleine stappen, oefen zoveel als je wilt en krijg uitleg als je vastloopt.</p>
+    <div class="hero-actions"><button class="btn primary" onclick="startPractice('Wiskunde')">⚡ Meteen oefenen</button><button class="btn ghost" onclick="showPage('subjects')">📚 Kies een vak</button></div>
+  </div>
+  <div class="section"><h2>Jouw vakken</h2><button class="link" onclick="showPage('subjects')">Alles bekijken →</button></div>
+  <div class="grid" id="homeSubjects"></div>
+  <div class="two"><div class="card"><h3>Verder leren</h3><div style="color:var(--muted);font-size:12px;margin-bottom:10px">Je kunt altijd verder waar je gebleven bent.</div><div id="continue"></div></div>
+  <div class="card"><h3>Vandaag</h3><div class="statrow"><span>🔥 Streak</span><b>4 dagen</b></div><div class="statrow"><span>⭐ XP</span><b id="xp">740 XP</b></div><div class="statrow"><span>🎯 Goed</span><b id="accuracy">84%</b></div></div></div>
+</section>
+
+<section id="subjects" class="view"><h1 class="title">Alle vakken</h1><p class="sub">Van klas 1 tot en met klas 6. Kies een vak en leer stap voor stap.</p><div class="filters" id="yearFilters"></div><div class="subjectgrid" id="allSubjects"></div></section>
+
+<section id="learn" class="view"><h1 class="title">Leren</h1><p class="sub">Kies een onderwerp, lees de uitleg en oefen daarna. Je kunt voor elk vak door alle onderwerpen heen.</p><div class="filters" id="lessonFilters"></div><div class="lesson" id="lessonArea"></div></section>
+
+<section id="practice" class="view"><h1 class="title">Oefenen</h1><p class="sub">Je kunt blijven oefenen: na elke vraag komt automatisch een nieuwe.</p><div class="practice-wrap" id="practiceArea"></div></section>
+
+<section id="progress" class="view"><h1 class="title">Jouw voortgang</h1><p class="sub">Alles wat je hier doet telt mee.</p><div class="card profilecard"><div class="statrow"><span>🏆 XP</span><b id="pXP">740</b></div><div class="statrow"><span>🔥 Streak</span><b>4 dagen</b></div><div class="statrow"><span>📝 Vragen gemaakt</span><b id="pAnswered">0</b></div><div class="statrow"><span>✅ Goed beantwoord</span><b id="pCorrect">0</b></div><div style="margin-top:20px"><b>Wiskunde</b><div class="bar" style="margin-top:7px"><i style="width:62%"></i></div></div><div style="margin-top:16px"><b>Engels</b><div class="bar" style="margin-top:7px"><i style="width:41%"></i></div></div></div></section>
+</main>
+</div><div class="toast" id="toast"></div>
+
+<script>
+/* LearnRush — brede onderbouw + bovenbouw curriculum */
+const subjects=[
+ ["Wiskunde","📐","Getallen, algebra, functies, meetkunde, statistiek en kansrekening.",62,["Getallen","Algebra","Functies","Meetkunde","Statistiek","Kansrekening"]],
+ ["Nederlands","📖","Taal, spelling, grammatica, lezen, argumentatie en literatuur.",48,["Spelling","Grammatica","Lezen","Argumenteren","Literatuur","Schrijven"]],
+ ["Engels","🇬🇧","Grammar, vocabulary, reading, writing, speaking and literature.",41,["Grammar","Vocabulary","Reading","Writing","Speaking","Literature"]],
+ ["Duits","🇩🇪","Wortschatz, Grammatik, Lesen, Schreiben und Kommunikation.",22,["Wortschatz","Grammatik","Lesen","Schreiben","Sprechen","Zeiten"]],
+ ["Frans","🇫🇷","Vocabulaire, grammaire, lecture, écriture et communication.",19,["Vocabulaire","Grammaire","Lecture","Écriture","Parler","Temps"]],
+ ["Natuurkunde","⚡","Krachten, beweging, energie, elektriciteit, golven en warmte.",29,["Beweging","Krachten","Energie","Elektriciteit","Golven","Warmte"]],
+ ["Scheikunde","🧪","Stoffen, atomen, reacties, mol, zuren, basen en organische chemie.",24,["Stoffen","Atomen","Reacties","Molverhoudingen","Zuren & basen","Organisch"]],
+ ["Biologie","🧬","Cellen, erfelijkheid, lichaam, planten, ecologie en evolutie.",37,["Cellen","Stofwisseling","Erfelijkheid","Mens","Ecologie","Evolutie"]],
+ ["Geschiedenis","🏛️","Tijdvakken, bronnen, oorzaak-gevolg, Nederland en wereldgeschiedenis.",55,["Prehistorie","Oudheid","Middeleeuwen","Vroegmoderne tijd","Moderne tijd","Bronnen"]],
+ ["Aardrijkskunde","🌍","Kaarten, klimaat, bevolking, steden, globalisering en welvaart.",31,["Kaarten","Klimaat","Bevolking","Steden","Globalisering","Welvaart"]],
+ ["Economie","💶","Geld, markt, vraag en aanbod, inkomen, overheid en economie.",35,["Geld","Markt","Vraag & aanbod","Inkomen","Overheid","Macro-economie"]],
+ ["Maatschappijleer","⚖️","Democratie, rechtsstaat, politiek, media en maatschappelijke vraagstukken.",18,["Democratie","Rechtsstaat","Politiek","Media","Pluriformiteit","Vraagstukken"]],
+ ["Informatica","💻","Programmeren, algoritmes, data, netwerken, AI en cybersecurity.",17,["Programmeren","Algoritmes","Data","Netwerken","AI","Security"]],
+ ["Bedrijfseconomie","📊","Balans, winst, kosten, investeringen, financiering en ondernemerschap.",12,["Balans","Winst","Kosten","Investeren","Financieren","Ondernemen"]],
+ ["Filosofie","💭","Logica, kennis, ethiek, argumentatie en denken over mens en samenleving.",8,["Logica","Kennis","Ethiek","Argumentatie","Mens","Samenleving"]],
+ ["Techniek","🔧","Ontwerpen, constructies, materialen, energie, techniek en digitale systemen.",15,["Ontwerpen","Constructies","Materialen","Energie","Systemen","Techniek"]],
+ ["Kunst & CKV","🎨","Kunst, beeld, cultuur, muziek, theater en kunstbeschouwing.",10,["Beeld","Muziek","Theater","Cultuur","Kunst kijken","Maken"]],
+ ["Muziek","🎵","Noten, ritme, akkoorden, instrumenten, muziekgeschiedenis en analyse.",9,["Noten","Ritme","Akkoorden","Instrumenten","Geschiedenis","Analyse"]]
+];
+
+const years=["Klas 1","Klas 2","Klas 3","Klas 4","Klas 5","Klas 6"];
+const topicBank={
+"Wiskunde":[
+ ["Getallen & rekenen","Je leert werken met positieve en negatieve getallen, breuken, machten en wortels.","Voorbeeld: −3 + 7 = 4.",["Wat is −3 + 7?",["−10","−4","4","10"],2,"Op de getallenlijn ga je vanaf −3 zeven plaatsen naar rechts: 4."]],
+ ["Algebra","Letters staan voor onbekende of variabele getallen. Werk stap voor stap en voer aan beide kanten dezelfde bewerking uit.","2x + 6 = 14 → 2x = 8 → x = 4.",["Los op: 2x + 6 = 14.",["2","3","4","5"],2,"Trek 6 af en deel daarna door 2."]],
+ ["Lineaire functies","Een lineaire formule heeft de vorm y = ax + b. a is de helling en b is het snijpunt met de y-as.","Bij y = 3x + 5 is a = 3 en b = 5.",["Welke waarde is b in y = 7x + 3?",["3","7","10","−3"],0,"b is de constante term: 3."]],
+ ["Procenten","Een percentage is een deel van 100. Zet een percentage om naar een decimaal getal om ermee te rekenen.","25% = 0,25, dus 25% van 80 = 20.",["Wat is 25% van 80?",["10","15","20","25"],2,"0,25 × 80 = 20."]],
+ ["Meetkunde","Je rekent met omtrek, oppervlakte, inhoud, hoeken en eigenschappen van figuren.","Oppervlakte rechthoek = lengte × breedte.",["Een rechthoek is 5 cm bij 3 cm. Wat is de oppervlakte?",["8 cm²","15 cm²","16 cm²","30 cm²"],1,"5 × 3 = 15 cm²."]],
+ ["Statistiek","Je leert gegevens lezen en samenvatten met gemiddelde, mediaan, modus en diagrammen.","Bij 2, 4, 6 is het gemiddelde 4.",["Wat is de mediaan van 2, 4, 9?",["2","4","5","9"],1,"Het middelste getal na sorteren is 4."]],
+ ["Kansrekening","Een kans ligt tussen 0 en 1 of tussen 0% en 100%.","Bij een eerlijke dobbelsteen is P(6) = 1/6.",["Hoeveel uitkomsten heeft een gewone dobbelsteen?",["4","5","6","12"],2,"De zijden zijn 1 t/m 6."]],
+ ["Vergelijkingen & grafieken","Je leert grafieken tekenen, aflezen en snijpunten bepalen.","Een snijpunt is een punt dat op beide grafieken ligt.",["Waar lees je bij een grafiek meestal x af?",["Horizontale as","Verticale as","Legenda","Titel"],0,"De x-as is meestal horizontaal."]]
+],
+"Nederlands":[
+ ["Spelling","Je leert werkwoordspelling, hoofdletters, tussen-n en lastige spellingregels.","In de zin 'Hij wordt ziek' schrijf je wordt met dt.",["Welke spelling is juist?",["Hij word ziek.","Hij wordt ziek.","Hij wort ziek.","Hij worddt ziek."],1,"Bij hij in de tegenwoordige tijd: stam + t → wordt."]],
+ ["Grammatica","Je leert zinsdelen zoals onderwerp, persoonsvorm, gezegde, lijdend voorwerp en meewerkend voorwerp.","In 'Sara leest een boek' is Sara het onderwerp.",["Wat is de persoonsvorm in 'Sara leest een boek'?",["Sara","leest","een boek","boek"],1,"Leest verandert als je de tijd verandert: Sara las een boek."]],
+ ["Tekstbegrip","Je leert hoofdgedachte, onderwerp, tekstverbanden, signaalwoorden en conclusies herkennen.","'Omdat' is een signaalwoord voor een reden.",["Wat is de hoofdgedachte?",["Een detail","De belangrijkste boodschap","De titel","Een voorbeeld"],1,"De hoofdgedachte vat de belangrijkste boodschap samen."]],
+ ["Argumenteren","Je leert standpunten, argumenten, tegenargumenten en drogredenen herkennen.","Een standpunt is een mening of bewering die iemand verdedigt.",["Wat ondersteunt een standpunt?",["Een argument","Een titel","Een alinea alleen","Een komma"],0,"Een argument geeft een reden voor het standpunt."]],
+ ["Literatuur","Je leert verhaalbegrippen zoals perspectief, thema, motief, personage en tijd.","Een ik-verteller vertelt vanuit het ik-perspectief.",["Wat is een thema?",["De belangrijkste onderliggende gedachte","De schrijver","De plaats","De kaft"],0,"Het thema is het centrale onderwerp/idee van een verhaal."]],
+ ["Schrijven","Je leert duidelijke teksten maken met een passende structuur, toon en alinea-indeling.","Een goede tekst heeft een logisch doel en een duidelijke opbouw.",["Wat helpt een tekst duidelijk te maken?",["Willekeurige volgorde","Alinea's","Geen leestekens","Alleen lange zinnen"],1,"Alinea's ordenen informatie en maken een tekst overzichtelijk."]]
+],
+"Engels":[
+ ["Present Simple","Use the present simple for habits, facts and routines.","I play football. She plays football.",["Choose: She ___ to school every day.",["go","goes","going","went"],1,"With he/she/it, the verb usually gets -s." ]],
+ ["Past Simple","Use the past simple for completed actions in the past.","Yesterday I played football.",["Choose the past tense: Yesterday I ___ football.",["play","plays","played","playing"],2,"Yesterday points to the past: played."]],
+ ["Present Perfect","Use have/has + past participle for experiences or actions connected to the present.","I have visited London.",["Choose: She ___ finished her homework.",["have","has","is","did"],1,"She takes has: she has finished."]],
+ ["Vocabulary","Build vocabulary by learning words in context and using them in sentences.","'Although' means 'hoewel'.",["What does 'although' mean?",["omdat","hoewel","daarom","terwijl"],1,"Although means hoewel." ]],
+ ["Reading","Look for the main idea, details, references and clues in a text.","Read the question first and scan for relevant information.",["What is the main idea?",["The central message","A random detail","The longest word","The title only"],0,"The main idea is the central message." ]],
+ ["Writing & speaking","Use clear sentences, linking words and an appropriate register.","First, however, therefore and finally help structure ideas.",["Which word signals a contrast?",["therefore","however","because","first"],1,"However introduces a contrast." ]]
+],
+"Duits":[
+ ["Wortschatz","Leer basiswoorden rond school, thuis, vrije tijd en reizen.","Haus = huis, Schule = school.",["Wat betekent Schule?",["Huis","School","Boek","Werk"],1,"Schule betekent school."]],
+ ["Grammatik","Leer zinsbouw, lidwoorden, naamvallen en werkwoordvervoeging.","Der, die en das zijn bepaalde lidwoorden.",["Wat is 'das' in het Duits?",["Een lidwoord","Een werkwoord","Een voorzetsel","Een bijvoeglijk naamwoord"],0,"Das is een bepaald lidwoord." ]],
+ ["Perfekt","Het Perfekt gebruik je vaak om over het verleden te vertellen in gesproken Duits.","Ich habe gespielt.",["Welke hulpwerkwoorden zie je vaak bij Perfekt?",["haben/sein","werden/machen","können/müssen","sein/werden"],0,"Perfekt gebruikt vaak haben of sein + voltooid deelwoord." ]],
+ ["Lesen","Leer hoofdgedachte en details uit Duitse teksten halen.","Zoek bekende woorden en gebruik de context.",["Wat helpt bij een moeilijke Duitse tekst?",["Alles overslaan","Context gebruiken","Alle woorden raden","Geen vragen lezen"],1,"De context helpt onbekende woorden begrijpen." ]]
+],
+"Frans":[
+ ["Vocabulaire","Leer basiswoordenschat voor school, familie, vrije tijd en reizen.","Bonjour = hallo/goeiedag.",["Wat betekent bonjour?",["Tot ziens","Hallo","Dank je","Alsjeblieft"],1,"Bonjour betekent hallo/goeiedag."]],
+ ["Présent","Leer de tegenwoordige tijd en regelmatige werkwoorden.","Je parle français.",["Wat betekent 'je parle'?",["ik praat","jij praat","hij praat","wij praten"],0,"Je = ik en parle = praat." ]],
+ ["Passé composé","Leer een veelgebruikte Franse verleden tijd met avoir/être + participe passé.","J'ai joué = ik heb gespeeld.",["Welke vorm hoort bij j'ai joué?",["présent","passé composé","futur","imparfait"],1,"J'ai + joué is passé composé." ]],
+ ["Compréhension","Leer de hoofdgedachte en belangrijke details uit Franse teksten halen.","Gebruik woorden die je al kent en de context.",["Wat helpt bij begrijpend lezen?",["Context","Alleen titel","Geen voorkennis","Alles vertalen"],0,"Context helpt je de betekenis te bepalen." ]]
+],
+"Natuurkunde":[
+ ["Beweging","Snelheid is afstand gedeeld door tijd: v = s/t.","120 km in 2 uur → 60 km/u.",["Een fietser rijdt 90 km in 3 uur. Snelheid?",["20 km/u","30 km/u","60 km/u","270 km/u"],1,"90 / 3 = 30 km/u." ]],
+ ["Krachten","Krachten kunnen versnellen, vertragen, sturen of vervormen.","Kracht meet je in newton (N).",["Welke eenheid hoort bij kracht?",["Joule","Newton","Watt","Volt"],1,"Kracht meet je in newton." ]],
+ ["Energie","Energie kan worden omgezet, bijvoorbeeld van chemische naar bewegingsenergie.","Een batterij zet chemische energie om in elektrische energie.",["Welke eenheid hoort bij energie?",["Joule","Newton","Volt","Pascal"],0,"Energie wordt gemeten in joule." ]],
+ ["Elektriciteit","Leer spanning, stroomsterkte, weerstand en schakelingen.","De wet van Ohm: U = I × R.",["Welke grootheid meet je in ampère?",["Spanning","Stroomsterkte","Weerstand","Energie"],1,"Stroomsterkte meet je in ampère (A)." ]],
+ ["Warmte","Leer temperatuur, warmteoverdracht en faseovergangen.","Bij smelten gaat een vaste stof over in een vloeistof.",["Wat gebeurt bij smelten?",["Vloeistof → gas","Vast → vloeistof","Gas → vast","Vast → gas"],1,"Smelten is vast naar vloeibaar." ]],
+ ["Golven","Leer frequentie, golflengte, trilling en geluid/licht.","Frequentie is het aantal trillingen per seconde.",["In welke eenheid meet je frequentie?",["Hz","N","J","W"],0,"Frequentie meet je in hertz (Hz)." ]]
+],
+"Scheikunde":[
+ ["Stoffen","Leer stofeigenschappen, mengsels en scheidingsmethoden.","Kookpunt en dichtheid zijn stofeigenschappen.",["Welke is een stofeigenschap?",["Lengte","Kookpunt","Vorm","Plaats"],1,"Kookpunt is kenmerkend voor een stof." ]],
+ ["Atomen","Alles om je heen bestaat uit atomen. Elementen hebben een eigen atoomsoort.","Een koolstofatoom heeft atoomnummer 6.",["Wat bepaalt het element?",["Aantal protonen","Aantal tafels","Kleur","Temperatuur"],0,"Het aantal protonen bepaalt het element." ]],
+ ["Reacties","Bij een chemische reactie ontstaan nieuwe stoffen; atomen worden herschikt.","Bij verbranding reageert een stof met zuurstof.",["Wat ontstaat bij een chemische reactie?",["Altijd dezelfde stof","Nieuwe stoffen","Geen stoffen","Alleen warmte"],1,"Een chemische reactie vormt nieuwe stoffen." ]],
+ ["Molrekenen","De mol is een hoeveelheid stof. Je leert rekenen met molaire massa en concentratie.","n = m/M.",["Welke letter staat vaak voor hoeveelheid stof in mol?",["n","v","t","U"],0,"n staat voor de hoeveelheid stof in mol." ]],
+ ["Zuren & basen","Je leert pH, zure/basische oplossingen en neutralisatie.","pH < 7 is zuur, pH = 7 neutraal, pH > 7 basisch.",["Een oplossing met pH 3 is...",["zuur","neutraal","basisch","altijd zout"],0,"pH 3 is zuur." ]]
+],
+"Biologie":[
+ ["Cellen","De cel is de kleinste levende eenheid. Organellen hebben verschillende functies.","Planten hebben onder andere een celwand en bladgroenkorrels.",["Wat is de kleinste levende eenheid?",["Orgaan","Weefsel","Cel","Organisme"],2,"Een cel is de kleinste levende eenheid." ]],
+ ["Stofwisseling","Cellen nemen stoffen op, zetten stoffen om en geven stoffen af.","Bij verbranding komt energie vrij uit energierijke stoffen.",["Waarvoor is stofwisseling belangrijk?",["Alleen kleur","Energie en bouwstoffen","Alleen beweging","Alleen slaap"],1,"Stofwisseling levert en gebruikt stoffen en energie." ]],
+ ["Erfelijkheid","DNA bevat erfelijke informatie. Genen zijn stukjes DNA met informatie.","Een chromosoom bestaat uit DNA en eiwitten.",["Waaruit bestaat erfelijke informatie vooral?",["DNA","Water","Zout","Glucose"],0,"DNA draagt erfelijke informatie." ]],
+ ["Menselijk lichaam","Organen werken samen in orgaanstelsels zoals ademhaling, bloedsomloop en spijsvertering.","De longen zorgen voor gaswisseling.",["Waar vindt gaswisseling plaats?",["Longen","Maag","Botten","Nieren"],0,"In de longen wordt zuurstof opgenomen en CO₂ afgegeven." ]],
+ ["Ecologie","Leer ecosystemen, voedselketens, populaties, kringlopen en biodiversiteit.","Een voedselketen laat zien wie wie eet.",["Wat toont een voedselketen?",["Eetrelaties","Alleen temperatuur","Alleen bodem","Alleen leeftijd"],0,"Een voedselketen toont eetrelaties." ]],
+ ["Evolutie","Populaties veranderen over generaties. Natuurlijke selectie kan verschillen in overleving en voortplanting beïnvloeden.","Eigenschappen die voordeel geven kunnen vaker voorkomen.",["Wanneer speelt natuurlijke selectie over generaties?",["Bij populaties","Bij één steen","Bij een losse cel altijd","Nooit"],0,"Evolutie gaat over veranderingen in populaties over generaties." ]]
+],
+"Geschiedenis":[
+ ["Prehistorie","Leer over jagers-verzamelaars, landbouw en de eerste steden.","De overgang naar landbouw heet de neolithische revolutie.",["Wat veranderde door landbouw?",["Mensen gingen vaker op één plek wonen","Er waren geen dorpen meer","Mensen stopten met eten","Er waren geen werktuigen"],0,"Landbouw maakte vaste woonplaatsen en grotere gemeenschappen mogelijk." ]],
+ ["Oudheid","Leer Grieken, Romeinen, democratie en klassieke culturen.","Athene ontwikkelde een vroege vorm van democratie.",["Welke polis staat bekend om een vroege democratie?",["Athene","Rome","Parijs","Londen"],0,"Athene is bekend om zijn democratische staatsvorm." ]],
+ ["Middeleeuwen","Leer feodalisme, steden, kerk, handel en de middeleeuwse samenleving.","In het feodale systeem waren leenheren en leenmannen belangrijk.",["Welke instelling had veel invloed in middeleeuws Europa?",["De kerk","De televisie","De EU","De spoorwegen"],0,"De kerk had grote religieuze en maatschappelijke invloed." ]],
+ ["Vroegmoderne tijd","Leer renaissance, ontdekkingsreizen, Reformatie en staatsvorming.","De Reformatie begon in de 16e eeuw en veranderde het christendom in Europa.",["In welke eeuw begon de Reformatie?",["12e","14e","16e","19e"],2,"De Reformatie begon in de 16e eeuw." ]],
+ ["Moderne tijd","Leer industrialisatie, wereldoorlogen, democratisering en de Koude Oorlog.","Industrialisatie veranderde productie, steden en arbeid sterk.",["Wat hoort bij industrialisatie?",["Fabrieksproductie","Minder techniek","Geen steden","Alleen landbouw"],0,"Fabrieksproductie is kenmerkend voor industrialisatie." ]],
+ ["Historische bronnen","Leer primaire en secundaire bronnen, betrouwbaarheid, standplaatsgebondenheid en bruikbaarheid.","Een dagboek uit een historische periode is een primaire bron.",["Wat is een primaire bron?",["Een bron uit de onderzochte tijd","Een moderne samenvatting altijd","Een toekomstvoorspelling","Een fictief spel"],0,"Een primaire bron komt direct uit de onderzochte periode." ]]
+],
+"Aardrijkskunde":[
+ ["Kaarten & schaal","Leer kaartsoorten, legenda, schaal, coördinaten en hoogtelijnen.","Schaal 1:100.000 betekent 1 cm op de kaart = 1 km in werkelijkheid.",["Wat betekent 1:100.000?",["1 cm = 100 km","1 cm = 1 km","1 cm = 100 m","1 cm = 10 km"],1,"100.000 cm is 1 km." ]],
+ ["Klimaat","Leer weer versus klimaat, klimaten, luchtstromen en klimaatfactoren.","Klimaat is het gemiddelde weer over een lange periode.",["Wat is klimaat?",["Het weer van één uur","Gemiddeld weer over lange tijd","Alleen regen","Alleen temperatuur"],1,"Klimaat beschrijft langjarige gemiddelden." ]],
+ ["Bevolking","Leer bevolkingsgroei, migratie, vergrijzing en bevolkingsspreiding.","Migratie is het verplaatsen van mensen naar een andere woonplaats.",["Wat is migratie?",["Verhuizen naar een andere plek","Meer regen","Een aardbeving","Een rivier"],0,"Migratie is het verplaatsen van mensen." ]],
+ ["Steden","Leer urbanisatie, suburbanisatie, functies van steden en stedelijke problemen.","Urbanisatie is de groei van het aandeel mensen dat in steden woont.",["Wat is urbanisatie?",["Groei van stedelijke bevolking","Krimp van alle steden","Meer landbouw","Minder verkeer"],0,"Urbanisatie betekent toenemende verstedelijking." ]],
+ ["Globalisering","Leer hoe gebieden economisch, cultureel en politiek met elkaar verbonden raken.","Productieketens kunnen over meerdere landen verspreid zijn.",["Wat betekent globalisering?",["Meer wereldwijde verbondenheid","Alle landen sluiten grenzen","Alleen lokale handel","Geen internationale contacten"],0,"Globalisering is toenemende wereldwijde verwevenheid." ]]
+],
+"Economie":[
+ ["Geld","Leer functies van geld, sparen, lenen, rente en inflatie.","Geld heeft onder andere een ruilfunctie en rekenfunctie.",["Welke is een functie van geld?",["Ruilmiddel","Alleen gewicht","Alleen temperatuur","Alleen vervoer"],0,"Geld werkt als ruilmiddel." ]],
+ ["Vraag & aanbod","Prijzen ontstaan mede door vraag en aanbod op markten.","Als vraag stijgt en aanbod gelijk blijft, kan de prijs stijgen.",["Wat gebeurt vaak bij stijgende vraag en gelijk aanbod?",["Prijs kan stijgen","Prijs moet nul worden","Aanbod verdwijnt altijd","Geen verandering mogelijk"],0,"Meer vraag bij gelijk aanbod kan opwaartse prijsdruk geven." ]],
+ ["Inkomen","Leer bruto/netto inkomen, belastingen, koopkracht en inkomensverdeling.","Koopkracht hangt af van inkomen én prijsniveau.",["Waar hangt koopkracht onder andere van af?",["Inkomen en prijzen","Alleen leeftijd","Alleen lengte","Alleen postcode"],0,"Koopkracht wordt door inkomen en prijzen beïnvloed." ]],
+ ["Overheid","Leer over belastingen, overheidsuitgaven, begroting en sociale zekerheid.","De overheid gebruikt belastinginkomsten onder andere voor publieke voorzieningen.",["Waarvoor kan de overheid belasting gebruiken?",["Publieke voorzieningen","Alleen privéwinkels","Alleen vakanties","Niets"],0,"Belastinggeld financiert onder andere publieke taken." ]]
+],
+"Maatschappijleer":[
+ ["Democratie","Leer hoe burgers invloed hebben, verkiezingen werken en macht verdeeld kan worden.","In een democratie hebben burgers politieke invloed, bijvoorbeeld via verkiezingen.",["Wat is een voorbeeld van politieke participatie?",["Stemmen","Slapen","Winkelen","Sporten"],0,"Stemmen is een vorm van politieke participatie." ]],
+ ["Rechtsstaat","Leer grondrechten, wetten, onafhankelijke rechtspraak en machtenscheiding.","In een rechtsstaat is ook de overheid aan regels gebonden.",["Wat is kenmerkend voor een rechtsstaat?",["De overheid is aan het recht gebonden","Geen wetten","Geen rechten","Geen rechters"],0,"Ook overheidsmacht is gebonden aan het recht." ]],
+ ["Politiek","Leer politieke partijen, parlement, kabinet en besluitvorming.","De Tweede Kamer controleert de regering en speelt een rol bij wetgeving.",["Welke taak heeft de Tweede Kamer?",["Regering controleren","Alleen rechtspreken","Alleen politie sturen","Geen"],0,"De Tweede Kamer controleert de regering." ]],
+ ["Media","Leer nieuws, framing, bronnen, algoritmes en media-invloed.","Controleer wie iets zegt, welke bron wordt gebruikt en welke informatie ontbreekt.",["Wat helpt om online informatie te beoordelen?",["Bron controleren","Alles geloven","Alleen titel lezen","Nooit vergelijken"],0,"Broncontrole helpt bij het beoordelen van informatie." ]]
+],
+"Informatica":[
+ ["Programmeren","Leer variabelen, voorwaarden, lussen, functies en stap-voor-stap denken.","Een variabele kan bijvoorbeeld een score bewaren.",["Waarvoor gebruik je een variabele?",["Een waarde bewaren","Een scherm schoonmaken","Een kabel vervangen","Een computer wegen"],0,"Een variabele bewaart een waarde." ]],
+ ["Algoritmes","Een algoritme is een duidelijke reeks stappen om een probleem op te lossen.","Een recept is een eenvoudig voorbeeld van een algoritme.",["Wat is een algoritme?",["Een stappenplan","Een monitor","Een kabel","Een bestandstype"],0,"Een algoritme beschrijft stappen om een taak/probleem uit te voeren." ]],
+ ["Data","Leer tabellen, datasets, datatypes, visualisaties en eenvoudige analyses.","Een tabel kan gegevens overzichtelijk opslaan.",["Wat is een dataset?",["Een verzameling gegevens","Een toetsenbord","Een browser","Een printer"],0,"Een dataset is een verzameling gegevens." ]],
+ ["Netwerken","Leer IP-adressen, routers, servers, clients en internetbasis.","Een router stuurt datapakketten tussen netwerken.",["Wat doet een router?",["Verstuurt verkeer tussen netwerken","Print foto's","Slaat altijd wachtwoorden op","Maakt stroom"],0,"Een router stuurt netwerkverkeer." ]],
+ ["Cybersecurity","Leer sterke wachtwoorden, phishing, malware, privacy en veilige digitale gewoonten.","Een uniek wachtwoord per belangrijke dienst verkleint schade bij een datalek.",["Wat is phishing?",["Misleidende poging om gegevens te krijgen","Een programmeertaal","Een internetkabel","Een back-up"],0,"Phishing probeert mensen te misleiden om informatie prijs te geven." ]],
+ ["AI & data","Leer wat modellen, trainingsdata, patronen en beperkingen van AI betekenen.","Een model leert patronen uit voorbeelden; dat betekent niet dat het altijd gelijk heeft.",["Waaruit leert een AI-model vaak patronen?",["Data","Een muur","Een batterij","Een stoel"],0,"Modellen leren patronen uit data." ]]
+],
+"Bedrijfseconomie":[
+ ["Balans","Leer bezittingen, schulden en eigen vermogen op een balans.","Bezittingen = activa; vermogen laat zien hoe die zijn gefinancierd.",["Wat staat aan de activakant?",["Bezittingen","Alleen winst","Alleen belasting","Alleen omzet"],0,"Activa zijn bezittingen." ]],
+ ["Winst","Winst = opbrengsten − kosten.","€10.000 opbrengsten en €7.000 kosten geeft €3.000 winst.",["€10.000 opbrengst en €7.000 kosten geeft...",["€1.000","€2.000","€3.000","€17.000"],2,"10.000 − 7.000 = 3.000." ]],
+ ["Kosten","Leer vaste en variabele kosten en kostprijsberekening.","Huur is vaak een voorbeeld van vaste kosten.",["Welke kosten veranderen vaak mee met productie?",["Variabele kosten","Vaste kosten altijd","Eigen vermogen","Balans"],0,"Variabele kosten bewegen mee met productie/afzet." ]]
+],
+"Filosofie":[
+ ["Logica","Leer redeneringen herkennen, premissen en conclusies onderscheiden.","Een argument bestaat uit redenen die een conclusie ondersteunen.",["Wat ondersteunt een conclusie?",["Premissen/argumenten","Een willekeurig woord","Een kleur","Een datum alleen"],0,"Premissen geven redenen voor een conclusie." ]],
+ ["Ethiek","Leer nadenken over goed handelen, plichten, gevolgen en deugden.","Een ethische vraag gaat over wat je behoort te doen of wat goed is.",["Waar gaat ethiek vooral over?",["Goed en juist handelen","Het weer","Rekenen","Topografie"],0,"Ethiek onderzoekt moreel handelen." ]],
+ ["Kennis","Leer vragen over wat we kunnen weten en hoe we kennis onderbouwen.","Een bewering is sterker wanneer er goede redenen of bewijs voor zijn.",["Wat helpt een kennisclaim te onderbouwen?",["Bewijs en redenen","Een gok","Een gerucht","Alleen volume"],0,"Bewijs en argumenten kunnen een claim ondersteunen." ]]
+],
+"Techniek":[
+ ["Ontwerpen","Leer een probleem analyseren, eisen opstellen, oplossingen bedenken, testen en verbeteren.","Een ontwerpcyclus is herhaalbaar: bedenken, maken, testen en verbeteren.",["Wat hoort bij ontwerpen?",["Testen en verbeteren","Nooit testen","Alleen tekenen","Niets meten"],0,"Testen en verbeteren horen bij een ontwerpcyclus." ]],
+ ["Materialen","Leer eigenschappen van hout, metaal, kunststof en composieten.","Een materiaal kies je op eigenschappen zoals sterkte, gewicht en duurzaamheid.",["Waarop kies je een materiaal?",["Eigenschappen en eisen","Alleen kleur","Alleen naam","Alleen prijs altijd"],0,"Materiaalkeuze hangt af van eisen en eigenschappen." ]],
+ ["Energie","Leer omzettingen, rendement en duurzame energie.","Rendement vergelijkt nuttige energie met opgenomen energie.",["Wat vergelijkt rendement?",["Nuttige en opgenomen energie","Alleen tijd","Alleen massa","Alleen kleur"],0,"Rendement is de verhouding tussen nuttige en opgenomen energie." ]]
+],
+"Kunst & CKV":[
+ ["Beeldtaal","Leer kleur, vorm, compositie, contrast, perspectief en betekenis.","Contrast maakt verschillen in een beeld opvallend.",["Wat kan contrast doen?",["Verschillen benadrukken","Alles onzichtbaar maken","Alleen geluid maken","Niets"],0,"Contrast benadrukt verschillen." ]],
+ ["Cultuur","Leer hoe kunst en cultuur verbonden zijn met tijd, plaats en samenleving.","Kunst kan verschillende functies hebben, zoals expressie, vermaak of kritiek.",["Welke functie kan kunst hebben?",["Kritiek","Alleen rekenen","Alleen vervoer","Geen"],0,"Kunst kan maatschappelijke kritiek geven." ]],
+ ["Kunst kijken","Leer beschrijven, analyseren, interpreteren en beoordelen zonder meteen te oordelen.","Begin met wat je daadwerkelijk ziet en onderbouw daarna je interpretatie.",["Wat doe je eerst bij analyseren?",["Observeren/beschrijven","Meteen raden","Alleen stemmen","Niets"],0,"Eerst beschrijf je wat er te zien is." ]]
+],
+"Muziek":[
+ ["Noten & ritme","Leer notennamen, maat, maatstrepen, ritmewaarden en tempo.","Een kwartnoot duurt in 4/4 één tel.",["Welke maat heeft vier tellen per maat?",["4/4","2/4","3/4","1/4"],0,"4/4 heeft vier kwartnoottellen per maat." ]],
+ ["Akkoorden","Een akkoord bestaat uit meerdere tonen die samen klinken.","Een drieklank bevat drie verschillende tonen.",["Hoeveel verschillende tonen heeft een drieklank?",["1","2","3","5"],2,"Een drieklank heeft drie tonen." ]],
+ ["Muziekgeschiedenis","Leer stijlen en ontwikkelingen van klassieke muziek tot pop en hedendaagse muziek.","Muziekstijlen veranderen door technologie, samenleving en cultuur.",["Wat kan muziekstijlen beïnvloeden?",["Technologie en cultuur","Alleen weer","Alleen leeftijd","Niets"],0,"Technologie en cultuur beïnvloeden muziek sterk." ]]
+]
+};
+
+// Geef elk onderwerp een niveau-indicatie. De inhoud blijft bruikbaar voor alle leerjaren;
+// de leerling kiest zelf Klas 1 t/m 6 en kan daardoor stap voor stap omhoog.
+const subjectYears={};
+subjects.forEach(s=>subjectYears[s[0]]=years.map((y,i)=>({year:y,topics:s[4].map(t=>t+" · "+(i+1))})));
+
+let state=JSON.parse(localStorage.getItem("learnrush")||'{"xp":0,"answered":0,"correct":0,"learned":0}');
+let currentSubject="Wiskunde", qIndex=0, locked=false, currentYear="Alle klassen", currentLessons=[];
+
+function save(){localStorage.setItem("learnrush",JSON.stringify(state));
+ const xp=document.getElementById("xp"),px=document.getElementById("pXP"),pa=document.getElementById("pAnswered"),pc=document.getElementById("pCorrect"),ac=document.getElementById("accuracy");
+ if(xp)xp.textContent=state.xp+" XP"; if(px)px.textContent=state.xp; if(pa)pa.textContent=state.answered; if(pc)pc.textContent=state.correct; if(ac)ac.textContent=state.answered?Math.round(state.correct/state.answered*100)+"%":"0%";
+}
+function subjectHTML(s,big=false){return `<div class="card subject ${big?'big':''}" onclick="openSubjectFromCard('${s[0]}')" style="cursor:pointer"><div class="ico">${s[1]}</div><h3>${s[0]}</h3><p>${s[2]}</p><div class="bar"><i style="width:${s[3]}%"></i></div><div class="small"><span>${s[3]}% voortgang</span><span>→</span></div>${big?`<div class="tags">${s[4].map(x=>`<span class="tag">${x}</span>`).join("")}</div><div style="display:flex;gap:8px;margin-top:15px"><button class="smallbtn" onclick="event.stopPropagation();openLessons('${s[0]}')">Leren</button><button class="smallbtn" onclick="event.stopPropagation();startPractice('${s[0]}')">Oefenen</button></div>`:""}</div>`}
+function renderSubjects(){document.getElementById("homeSubjects").innerHTML=subjects.slice(0,8).map(s=>subjectHTML(s)).join("");document.getElementById("allSubjects").innerHTML=subjects.map(s=>subjectHTML(s,true)).join("");}
+function showPage(id){document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));const v=document.getElementById(id);if(v)v.classList.add("active");document.querySelectorAll(".nav button").forEach(x=>x.classList.toggle("active",x.dataset.page===id));window.scrollTo(0,0)}
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>showPage(b.dataset.page));
+function toast(t){const x=document.getElementById("toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),1800)}
+function buildYearFilters(){const html=`<button class="filter active" onclick="setYear('Alle klassen',this)">Alle klassen</button>`+years.map(y=>`<button class="filter" onclick="setYear('${y}',this)">${y}</button>`).join("");document.getElementById("yearFilters").innerHTML=html}
+function setYear(y,btn){currentYear=y;document.querySelectorAll("#yearFilters .filter").forEach(b=>b.classList.remove("active"));btn.classList.add("active");toast(y+" geselecteerd");}
+function openSubjectFromCard(sub){currentSubject=sub;showPage("learn");openLessons(sub)}
+function openLessons(sub){currentSubject=sub;showPage("learn");
+ const data=topicBank[sub]||[];currentLessons=data.map((x,i)=>({title:x[0],text:x[1],example:x[2],quiz:x[3]}));
+ const yearText=currentYear==="Alle klassen"?"Klas 1 t/m 6":currentYear;
+ document.getElementById("lessonFilters").innerHTML=`<div style="width:100%;display:flex;justify-content:space-between;align-items:center;margin-bottom:4px"><b>${sub} · ${yearText}</b><button class="smallbtn" onclick="startPractice('${sub}')">⚡ Oefenen</button></div>`+currentLessons.map((l,i)=>`<button class="filter ${i===0?'active':''}" onclick="loadLesson(${i})">${l.title}</button>`).join("");
+ if(!currentLessons.length){document.getElementById("lessonArea").innerHTML=`<div class="lessonbox"><h2>Dit vak komt eraan</h2><p>Er is nog geen lesinhoud toegevoegd.</p></div>`;return}
+ loadLesson(0)
+}
+function loadLesson(i){document.querySelectorAll("#lessonFilters .filter").forEach((b,n)=>b.classList.toggle("active",n===i));const l=currentLessons[i];state.learned=(state.learned||0)+1;save();document.getElementById("lessonArea").innerHTML=`<div class="lessonbox"><div class="tag">${currentSubject.toUpperCase()} · ${currentYear}</div><h2>${l.title}</h2><p>${l.text}</p><div class="example"><b>Voorbeeld</b><br>${l.example}</div><div class="callout" style="margin-top:18px">💡 <b>Onthoud:</b> leer eerst de uitleg, bekijk het voorbeeld en test jezelf daarna.</div><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px"><button class="btn purple" onclick="startTopicPractice(${i})">⚡ Oefen dit onderwerp</button><button class="btn" style="background:#eef2f7" onclick="nextLesson(${i})">Volgende les →</button></div></div>`}
+function nextLesson(i){loadLesson((i+1)%currentLessons.length);}
+function startTopicPractice(i){const q=currentLessons[i]?.quiz;if(!q){startPractice(currentSubject);return}currentSubject=currentSubject;qIndex=i;locked=false;showPage("practice");renderQuestion(q)}
+function startPractice(sub){currentSubject=topicBank[sub]?.length?sub:"Wiskunde";const data=topicBank[currentSubject]||topicBank.Wiskunde;qIndex=Math.floor(Math.random()*data.length);locked=false;showPage("practice");renderQuestion()}
+function renderQuestion(custom){const data=topicBank[currentSubject]||topicBank.Wiskunde;const q=custom||data[qIndex%data.length][3];locked=false;document.getElementById("practiceArea").innerHTML=`<div class="card"><div class="practicebar"><span>${currentSubject} · ${currentYear} · vraag ${state.answered+1}</span><span>⭐ +20 XP bij goed</span></div><div class="question">${q[0]}</div><div class="choices">${q[1].map((c,i)=>`<button class="choice" onclick="answer(${i})">${c}</button>`).join("")}</div><div id="fb" class="feedback"></div><div id="nextbox"></div></div>`}
+function answer(i){if(locked)return;locked=true;const data=topicBank[currentSubject]||topicBank.Wiskunde;const q=data[qIndex%data.length][3];const buttons=document.querySelectorAll(".choice");buttons.forEach((b,n)=>{b.disabled=true;if(n===q[2])b.classList.add("correct")});const fb=document.getElementById("fb");state.answered++;if(i===q[2]){state.correct++;state.xp+=20;fb.className="feedback show good";fb.innerHTML="<b>🎉 Goed!</b> "+q[3];toast("+20 XP")}else{buttons[i].classList.add("wrong");fb.className="feedback show bad";fb.innerHTML="<b>Bijna.</b> "+q[3];toast("Geen probleem — hiervan leer je.")}save();document.getElementById("nextbox").innerHTML=`<button class="btn purple next" onclick="nextQuestion()">Volgende vraag →</button>`}
+function nextQuestion(){const data=topicBank[currentSubject]||topicBank.Wiskunde;qIndex=(qIndex+1)%data.length;renderQuestion()}
+function populateContinue(){document.getElementById("continue").innerHTML=[["📐","Wiskunde — Algebra","Verder leren"],["🇬🇧","Engels — Present Simple","Verder leren"],["⚡","Natuurkunde — Beweging","Verder oefenen"]].map((x,i)=>`<div class="item"><div class="miniico">${x[0]}</div><main><strong>${x[1]}</strong><small>${x[2]}</small></main><button class="smallbtn" onclick="${i<2?`openLessons('${i===0?'Wiskunde':i===1?'Engels':'Natuurkunde'}')`:`startPractice('Natuurkunde')`}">Open</button></div>`).join("")}
+document.getElementById("search").oninput=e=>{const q=e.target.value.toLowerCase();showPage("subjects");document.querySelectorAll("#allSubjects .subject").forEach((el,i)=>el.style.display=!q||(subjects[i][0]+" "+subjects[i][2]+" "+subjects[i][4].join(" ")).toLowerCase().includes(q)?"":"none")};
+renderSubjects();buildYearFilters();populateContinue();save();showPage("home");
+</script>
+</body>
+</html>
